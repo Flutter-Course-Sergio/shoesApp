@@ -4,12 +4,14 @@ class CustomButton extends StatelessWidget {
   final double buttonWidth;
   final double buttonHeight;
   final String text;
+  final Color buttonColor;
 
   const CustomButton(
       {super.key,
       required this.text,
-      required this.buttonWidth,
-      required this.buttonHeight});
+      this.buttonWidth = 150,
+      this.buttonHeight = 50,
+      this.buttonColor = Colors.orange});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class CustomButton extends StatelessWidget {
       width: buttonWidth,
       height: buttonHeight,
       decoration: BoxDecoration(
-          color: Colors.orange, borderRadius: BorderRadius.circular(100)),
+          color: buttonColor, borderRadius: BorderRadius.circular(100)),
       child: Text(
         text,
         style: textStyle,

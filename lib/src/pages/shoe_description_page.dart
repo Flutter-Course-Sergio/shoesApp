@@ -27,10 +27,12 @@ class ShoeDescriptionPage extends StatelessWidget {
                   value: 180.0,
                   buttonText: 'Buy now',
                   containerHeight: 60,
-                  colorOpacity: 0.1,
+                  colorOpacity: 0.08,
                   buttonWidth: 120,
                   buttonHeight: 40,
-                )
+                ),
+                SizedBox(height: 20),
+                ColorOptions()
               ],
             ),
           ),
