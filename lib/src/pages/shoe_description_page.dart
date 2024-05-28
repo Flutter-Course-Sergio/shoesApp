@@ -1,6 +1,8 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 
+
+import '../helpers/helpers.dart';
 import '../widgets/custom_widgets.dart';
 
 class ShoeDescriptionPage extends StatelessWidget {
@@ -8,6 +10,8 @@ class ShoeDescriptionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    changeStatusLight();
+
     return Scaffold(
         body: Column(
       children: [
