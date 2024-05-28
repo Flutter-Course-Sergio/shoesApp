@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 
 class ShoeSizePreview extends StatelessWidget {
   const ShoeSizePreview({super.key});
@@ -57,20 +55,22 @@ class _ShoeShadow extends StatelessWidget {
 }
 
 class _ShoeSizes extends StatelessWidget {
+  final List<Widget> shoes = const [
+    _ShoeSizeBox(7),
+    _ShoeSizeBox(7.5),
+    _ShoeSizeBox(8),
+    _ShoeSizeBox(8.5),
+    _ShoeSizeBox(9),
+    _ShoeSizeBox(9.5),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          _ShoeSizeBox(7),
-          _ShoeSizeBox(7.5),
-          _ShoeSizeBox(8),
-          _ShoeSizeBox(8.5),
-          _ShoeSizeBox(9),
-          _ShoeSizeBox(9.5),
-        ],
+        children: [...shoes],
       ),
     );
   }
@@ -83,17 +83,25 @@ class _ShoeSizeBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const textStyle = TextStyle(
-        color: Color(0xffF1A23A), fontSize: 16, fontWeight: FontWeight.bold);
+    final textStyle = TextStyle(
+        color: (size == 9) ? Colors.white : const Color(0xffF1A23A),
+        fontSize: 16,
+        fontWeight: FontWeight.bold);
 
     return Container(
       alignment: Alignment.center,
       width: 45,
       height: 45,
       decoration: BoxDecoration(
-          color: Colors.white,
+          color: (size == 9) ? const Color(0xffF1A23A) : Colors.white,
           borderRadius: BorderRadius.circular(10),
-          boxShadow: const []),
+          boxShadow: [
+            if (size == 9)
+              const BoxShadow(
+                  color: Color(0xffF1A23A),
+                  blurRadius: 10,
+                  offset: Offset(0, 5))
+          ]),
       child: Text(
         size.toString().replaceAll('.0', ''),
         style: textStyle,
