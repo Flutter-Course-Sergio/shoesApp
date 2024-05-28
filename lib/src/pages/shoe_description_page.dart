@@ -31,6 +31,7 @@ class ShoeDescriptionPage extends StatelessWidget {
                   highlightElevation: 0,
                   backgroundColor: Colors.transparent,
                   onPressed: () {
+                    changeStatusDark();
                     Navigator.pop(context);
                   },
                   child: const Icon(
