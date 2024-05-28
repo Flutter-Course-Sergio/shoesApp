@@ -4,8 +4,20 @@ import 'custom_widgets.dart';
 
 class AddToCarButton extends StatelessWidget {
   final double value;
+  final String buttonText;
+  final double containerHeight;
+  final double colorOpacity;
+  final double buttonWidth;
+  final double buttonHeight;
 
-  const AddToCarButton({super.key, required this.value});
+  const AddToCarButton(
+      {super.key,
+      required this.value,
+      required this.buttonText,
+      this.containerHeight = 100,
+      this.colorOpacity = 0.2,
+      this.buttonHeight = 50,
+      this.buttonWidth = 150});
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +27,9 @@ class AddToCarButton extends StatelessWidget {
       padding: const EdgeInsets.all(10),
       child: Container(
           width: double.infinity,
-          height: 100,
+          height: containerHeight,
           decoration: BoxDecoration(
-              color: Colors.grey.withOpacity(0.1),
+              color: Colors.grey.withOpacity(colorOpacity),
               borderRadius: BorderRadius.circular(100)),
           child: Row(
             children: [
@@ -27,7 +39,10 @@ class AddToCarButton extends StatelessWidget {
                 style: valueStyle,
               ),
               const Spacer(),
-              const CustomButton(text: 'Add to cart'),
+              CustomButton(
+                  text: buttonText,
+                  buttonWidth: buttonWidth,
+                  buttonHeight: buttonHeight),
               const SizedBox(width: 20),
             ],
           )),

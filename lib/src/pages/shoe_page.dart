@@ -25,7 +25,10 @@ class ShoePage extends StatelessWidget {
             ],
           ),
         )),
-        AddToCarButton(value: 180.0)
+        AddToCarButton(
+          value: 180.0,
+          buttonText: 'Add to cart',
+        )
       ],
     ));
   }

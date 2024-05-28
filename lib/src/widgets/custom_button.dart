@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
+  final double buttonWidth;
+  final double buttonHeight;
   final String text;
 
-  const CustomButton({super.key, required this.text});
+  const CustomButton(
+      {super.key,
+      required this.text,
+      required this.buttonWidth,
+      required this.buttonHeight});
 
   @override
   Widget build(BuildContext context) {
@@ -11,8 +17,8 @@ class CustomButton extends StatelessWidget {
 
     return Container(
       alignment: Alignment.center,
-      width: 150,
-      height: 50,
+      width: buttonWidth,
+      height: buttonHeight,
       decoration: BoxDecoration(
           color: Colors.orange, borderRadius: BorderRadius.circular(100)),
       child: Text(

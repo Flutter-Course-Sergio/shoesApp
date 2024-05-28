@@ -22,6 +22,15 @@ class ShoeDescriptionPage extends StatelessWidget {
                     title: 'Nike Air Max 720',
                     description:
                         "The Nike Air Max 720 goes bigger than ever before with Nike's taller Air unit yet, offering more air underfoot for unimaginable, all-day comfort. Has Air Max gone too far? We hope so."),
+                SizedBox(height: 10),
+                AddToCarButton(
+                  value: 180.0,
+                  buttonText: 'Buy now',
+                  containerHeight: 60,
+                  colorOpacity: 0.1,
+                  buttonWidth: 120,
+                  buttonHeight: 40,
+                )
               ],
             ),
           ),
