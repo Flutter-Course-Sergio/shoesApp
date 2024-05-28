@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/custom_widgets.dart';
@@ -12,8 +13,11 @@ class ShoeDescriptionPage extends StatelessWidget {
       children: [
         Stack(
           children: [
-            const ShoeSizePreview(
-              fullscreen: true,
+            const Hero(
+              tag: 'shoe-main',
+              child: ShoeSizePreview(
+                fullscreen: true,
+              ),
             ),
             Positioned(
                 top: 50,
@@ -22,7 +26,9 @@ class ShoeDescriptionPage extends StatelessWidget {
                   elevation: 0,
                   highlightElevation: 0,
                   backgroundColor: Colors.transparent,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   child: const Icon(
                     Icons.chevron_left_outlined,
                     color: Colors.white,
@@ -40,14 +46,7 @@ class ShoeDescriptionPage extends StatelessWidget {
                     title: 'Nike Air Max 720',
                     description:
                         "The Nike Air Max 720 goes bigger than ever before with Nike's taller Air unit yet, offering more air underfoot for unimaginable, all-day comfort. Has Air Max gone too far? We hope so."),
-                AddToCarButton(
-                  value: 180.0,
-                  buttonText: 'Buy now',
-                  containerHeight: 60,
-                  colorOpacity: 0.08,
-                  buttonWidth: 120,
-                  buttonHeight: 40,
-                ),
+                _ValueBuyNow(),
                 ColorOptions(),
                 FloatingButtons()
               ],
@@ -56,5 +55,39 @@ class ShoeDescriptionPage extends StatelessWidget {
         ),
       ],
     ));
+  }
+}
+
+class _ValueBuyNow extends StatelessWidget {
+  const _ValueBuyNow();
+
+  @override
+  Widget build(BuildContext context) {
+    const valueStyle = TextStyle(fontSize: 28, fontWeight: FontWeight.bold);
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30),
+      child: Container(
+          margin: const EdgeInsets.only(top: 20, bottom: 20),
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(100)),
+          child: Row(
+            children: [
+              const Text(
+                '\$180.0',
+                style: valueStyle,
+              ),
+              const Spacer(),
+              Bounce(
+                delay: const Duration(seconds: 1),
+                from: 8,
+                child: const CustomButton(
+                  text: 'Buy now',
+                  buttonHeight: 40,
+                  buttonWidth: 120,
+                ),
+              ),
+            ],
+          )),
+    );
   }
 }

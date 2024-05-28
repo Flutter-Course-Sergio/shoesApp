@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../pages/pages.dart';
+
 class ShoeSizePreview extends StatelessWidget {
   final bool fullscreen;
 
@@ -7,23 +9,33 @@ class ShoeSizePreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-          horizontal: (fullscreen) ? 5 : 30, vertical: (fullscreen) ? 5 : 0),
-      child: Container(
-        width: double.infinity,
-        height: (fullscreen) ? 430 : 450,
-        decoration: BoxDecoration(
-            color: const Color(0xffFFCF53),
-            borderRadius: (!fullscreen)
-                ? BorderRadius.circular(50)
-                : const BorderRadius.only(
-                    bottomLeft: Radius.circular(50),
-                    bottomRight: Radius.circular(50),
-                    topLeft: Radius.circular(40),
-                    topRight: Radius.circular(40))),
-        child: Column(
-          children: [_ShoeBox(), if (!fullscreen) _ShoeSizes()],
+    return GestureDetector(
+      onTap: () {
+        if (!fullscreen) {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const ShoeDescriptionPage()));
+        }
+      },
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+            horizontal: (fullscreen) ? 5 : 30, vertical: (fullscreen) ? 5 : 0),
+        child: Container(
+          width: double.infinity,
+          height: (fullscreen) ? 430 : 450,
+          decoration: BoxDecoration(
+              color: const Color(0xffFFCF53),
+              borderRadius: (!fullscreen)
+                  ? BorderRadius.circular(50)
+                  : const BorderRadius.only(
+                      bottomLeft: Radius.circular(50),
+                      bottomRight: Radius.circular(50),
+                      topLeft: Radius.circular(40),
+                      topRight: Radius.circular(40))),
+          child: Column(
+            children: [_ShoeBox(), if (!fullscreen) _ShoeSizes()],
+          ),
         ),
       ),
     );
