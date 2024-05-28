@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
 class ShoeSizePreview extends StatelessWidget {
@@ -10,12 +11,12 @@ class ShoeSizePreview extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 5),
       child: Container(
         width: double.infinity,
-        height: 430,
+        height: 450,
         decoration: BoxDecoration(
             color: const Color(0xffFFCF53),
             borderRadius: BorderRadius.circular(50)),
-        child: const Column(
-          children: [_ShoeBox()],
+        child: Column(
+          children: [_ShoeBox(), _ShoeSizes()],
         ),
       ),
     );
@@ -23,8 +24,6 @@ class ShoeSizePreview extends StatelessWidget {
 }
 
 class _ShoeBox extends StatelessWidget {
-  const _ShoeBox();
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -52,6 +51,52 @@ class _ShoeShadow extends StatelessWidget {
             boxShadow: const [
               BoxShadow(color: Color(0xffEAA14E), blurRadius: 40)
             ]),
+      ),
+    );
+  }
+}
+
+class _ShoeSizes extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          _ShoeSizeBox(7),
+          _ShoeSizeBox(7.5),
+          _ShoeSizeBox(8),
+          _ShoeSizeBox(8.5),
+          _ShoeSizeBox(9),
+          _ShoeSizeBox(9.5),
+        ],
+      ),
+    );
+  }
+}
+
+class _ShoeSizeBox extends StatelessWidget {
+  final double size;
+
+  const _ShoeSizeBox(this.size);
+
+  @override
+  Widget build(BuildContext context) {
+    const textStyle = TextStyle(
+        color: Color(0xffF1A23A), fontSize: 16, fontWeight: FontWeight.bold);
+
+    return Container(
+      alignment: Alignment.center,
+      width: 45,
+      height: 45,
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: const []),
+      child: Text(
+        size.toString().replaceAll('.0', ''),
+        style: textStyle,
       ),
     );
   }
