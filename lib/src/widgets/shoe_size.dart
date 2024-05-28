@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../models/models.dart';
 import '../pages/pages.dart';
 
 class ShoeSizePreview extends StatelessWidget {
@@ -104,28 +106,39 @@ class _ShoeSizeBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final shoeModel = Provider.of<ShoeModel>(context);
+
     final textStyle = TextStyle(
-        color: (size == 9) ? Colors.white : const Color(0xffF1A23A),
+        color:
+            (size == shoeModel.size) ? Colors.white : const Color(0xffF1A23A),
         fontSize: 16,
         fontWeight: FontWeight.bold);
 
-    return Container(
-      alignment: Alignment.center,
-      width: 45,
-      height: 45,
-      decoration: BoxDecoration(
-          color: (size == 9) ? const Color(0xffF1A23A) : Colors.white,
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: [
-            if (size == 9)
-              const BoxShadow(
-                  color: Color(0xffF1A23A),
-                  blurRadius: 10,
-                  offset: Offset(0, 5))
-          ]),
-      child: Text(
-        size.toString().replaceAll('.0', ''),
-        style: textStyle,
+    return GestureDetector(
+      onTap: () {
+        final shoeModel = Provider.of<ShoeModel>(context, listen: false);
+        shoeModel.size = size;
+      },
+      child: Container(
+        alignment: Alignment.center,
+        width: 45,
+        height: 45,
+        decoration: BoxDecoration(
+            color: (size == shoeModel.size)
+                ? const Color(0xffF1A23A)
+                : Colors.white,
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              if (size == shoeModel.size)
+                const BoxShadow(
+                    color: Color(0xffF1A23A),
+                    blurRadius: 10,
+                    offset: Offset(0, 5))
+            ]),
+        child: Text(
+          size.toString().replaceAll('.0', ''),
+          style: textStyle,
+        ),
       ),
     );
   }
