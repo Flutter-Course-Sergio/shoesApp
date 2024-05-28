@@ -7,13 +7,31 @@ class ShoeDescriptionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
         body: Column(
       children: [
-        ShoeSizePreview(
-          fullscreen: true,
+        Stack(
+          children: [
+            const ShoeSizePreview(
+              fullscreen: true,
+            ),
+            Positioned(
+                top: 50,
+                left: 10,
+                child: FloatingActionButton(
+                  elevation: 0,
+                  highlightElevation: 0,
+                  backgroundColor: Colors.transparent,
+                  onPressed: () {},
+                  child: const Icon(
+                    Icons.chevron_left_outlined,
+                    color: Colors.white,
+                    size: 60,
+                  ),
+                )),
+          ],
         ),
-        Expanded(
+        const Expanded(
           child: SingleChildScrollView(
             physics: BouncingScrollPhysics(),
             child: Column(
@@ -22,7 +40,6 @@ class ShoeDescriptionPage extends StatelessWidget {
                     title: 'Nike Air Max 720',
                     description:
                         "The Nike Air Max 720 goes bigger than ever before with Nike's taller Air unit yet, offering more air underfoot for unimaginable, all-day comfort. Has Air Max gone too far? We hope so."),
-                SizedBox(height: 10),
                 AddToCarButton(
                   value: 180.0,
                   buttonText: 'Buy now',
@@ -31,8 +48,8 @@ class ShoeDescriptionPage extends StatelessWidget {
                   buttonWidth: 120,
                   buttonHeight: 40,
                 ),
-                SizedBox(height: 20),
-                ColorOptions()
+                ColorOptions(),
+                FloatingButtons()
               ],
             ),
           ),

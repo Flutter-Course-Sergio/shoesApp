@@ -4,3 +4,4 @@ export 'shoe_description.dart';
 export 'shopping_car_button.dart';
 export 'custom_button.dart';
 export 'color_options.dart';
+export 'floating_buttons.dart';
